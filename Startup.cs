@@ -16,6 +16,9 @@ namespace SudokuGenerator
 
             app.Run(async context =>
             {
+                context.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Headers", new[] { "*" });
+                context.Response.Headers.Add("Access-Control-Allow-Methods", new[] { "*" });
                 context.Response.ContentType = "application/json";
                 var json = SudokuPuzzle.RandomGrid(9).ToString();
                 await context.Response.WriteAsync(json);
